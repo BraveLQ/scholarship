@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('scholarships', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('image');
+            $table->foreignId('major_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('field_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('country_id')->constrained()->cascadeOnDelete();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->longText('description');
+            $table->longText('source_url');
+            $table->longText('video_url');
             $table->timestamps();
         });
     }

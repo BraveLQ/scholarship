@@ -11,8 +11,8 @@
             <form class="p-4 border bg-white rounded-lg" @submit.prevent="submit">
 
                 <div class="mb-6">
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-600">Select a country</label>
-                    <select v-model="form.country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"> <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Select a country</label>
+                    <select v-model="form.country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option value="United Kingdom" label="United Kingdom">United Kingdom</option>
                         <optgroup id="country-optgroup-Northern Europe" label="Northern Europe">
                             <option value="Denmark" label="Denmark">Denmark</option>

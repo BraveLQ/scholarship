@@ -10,4 +10,9 @@ class Country extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function scholarships()
+    {
+        return $this->hasMany(Scholarship::class);
+    }
 }

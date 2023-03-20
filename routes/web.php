@@ -36,5 +36,5 @@ Route::middleware([
     Route::resource('/fields',\App\Http\Controllers\Admin\FieldController::class);
     Route::resource('/majors', \App\Http\Controllers\Admin\MajorController::class);
     Route::resource('/countries', \App\Http\Controllers\Admin\CountryController::class);
-    Route::resource('scholarships', \App\Http\Controllers\Admin\ScholarshipController::class);
+    Route::resource('/scholarships', \App\Http\Controllers\Admin\ScholarshipController::class);
 });

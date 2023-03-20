@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\Field;
 use App\Models\Major;
+use App\Models\Scholarship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class ScholarshipController extends Controller
@@ -35,7 +37,35 @@ class ScholarshipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'title'=>['required', 'min:2'],
+        'image'=>['image'],
+        'major_id'=>['required'],
+        'field_id'=>['required'],
+        'country_id'=>['required'],
+        'start_date'=>['required'],
+        'end_date'=>['required'],
+        'description'=>['required'],
+        'source_url'=>['required'],
+        'video_url'=>['required'],
+    ]);
+        if ($request->hasFile('image')){
+            $image = $request->file('image')->store('images');
+            Scholarship::create([
+                'title'=>$request->title,
+                'image'=>$image,
+                'major_id'=>$request->major_id,
+                'field_id'=>$request->field_id,
+                'country_id'=>$request->country_id,
+                'start_date'=>$request->start_date,
+                'end_date'=>$request->end_date,
+                'description'=>$request->description,
+                'source_url'=>$request->source_url,
+                'video_url'=>$request->video_url,
+            ]);
+            return Redirect::route('scholarships.index');
+        }
+        return Redirect::back();
     }
 
     /**
