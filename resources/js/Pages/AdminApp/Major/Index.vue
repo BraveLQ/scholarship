@@ -31,7 +31,7 @@
                 </td>
                 <td class="px-6 py-4">
                     <div class="flex justify-end gap-4">
-                        <Link :href="route('fields.destroy', major.id)" x-data="{ tooltip: 'Delete' }" href="#">
+                        <Link :href="route('majors.destroy', major.id)" method="delete" x-data="{ tooltip: 'Delete' }" href="#">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"

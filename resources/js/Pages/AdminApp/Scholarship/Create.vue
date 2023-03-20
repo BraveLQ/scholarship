@@ -10,18 +10,20 @@
             <form class="p-4 border bg-white rounded-lg ">
 
                 <div class="mb-6">
-                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-600">Title</label>
-                    <input id="title" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sr. Manager" required>
+                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+                    <input id="title" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Sr. Manager" required>
                 </div>
 
                 <div class="mb-6">
-                    <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-600">Choose File</label>
-                    <input id="image" type="file" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="chose file" required>
+                    <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Choose File</label>
+                    <input id="image" type="file" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="chose file" required>
                 </div>
 
                 <div class="mb-6">
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-600">Major</label>
-                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">hcjhzgcj</select>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Major</label>
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option v-for="major in majors" :key="major.id" :value="major.id" >{{major.title}}</option>
+                    </select>
                 </div>
 
                 <div class="mb-6">
@@ -76,8 +78,13 @@
 </template>
 
 <script setup>
-
 import AppLayout from "@/Layouts/AppLayout.vue";
+
+defineProps({
+    majors: Array,
+    countries: Array,
+    fields: Array,
+})
 </script>
 
 <style scoped>

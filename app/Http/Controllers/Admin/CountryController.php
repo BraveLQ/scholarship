@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CountryResource;
+use App\Models\Country;
+use App\Models\Major;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class CountryController extends Controller
@@ -13,7 +17,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        return Inertia::render('AdminApp/Country/Index');
+        $countries = CountryResource::collection(Country::all());
+        return Inertia::render('AdminApp/Country/Index', compact('countries'));
     }
 
     /**
@@ -21,7 +26,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('AdminApp/Country/Create');
     }
 
     /**
@@ -29,7 +34,16 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'country'=>['required'],
+        ]);
+        if ($request){
+            Country::create([
+                'country'=>$request->country,
+            ]);
+            return Redirect::route('countries.index');
+        }
+        return Redirect::back();
     }
 
     /**
@@ -59,8 +73,8 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Country $country)
     {
-        //
+        $country->delete();
     }
 }

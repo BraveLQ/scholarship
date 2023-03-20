@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
+use App\Models\Field;
+use App\Models\Major;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -21,7 +24,10 @@ class ScholarshipController extends Controller
      */
     public function create()
     {
-        return Inertia::render('AdminApp/Scholarship/Create');
+        $majors = Major::all();
+        $countries = Country::all();
+        $fields = Field::all();
+        return Inertia::render('AdminApp/Scholarship/Create', compact('majors','countries', 'fields'));
     }
 
     /**
