@@ -51,8 +51,16 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('fields.index')" :active="route().current('fields')">
+                                <NavLink :href="route('fields.index')" :active="route().current('fields.index')">
                                     Field
+                                </NavLink>
+                                <NavLink :href="route('majors.index')" :active="route().current('majors.index')">
+                                    Major
+                                </NavLink>
+                                <NavLink :href="route('countries.index')" :active="route().current('countries.index')">
+                                    Country
+                                </NavLink><NavLink :href="route('scholarships.index')" :active="route().current('scholarships.index')">
+                                    Scholarships
                                 </NavLink>
                             </div>
                         </div>
@@ -197,8 +205,17 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <ResponsiveNavLink :href="route('fields.index')" :active="route().current('fields.index')">
                             Field
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('majors.index')" :active="route().current('majors.index')">
+                            Major
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('countries.index')" :active="route().current('countries.index')">
+                            Country
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('scholarships.index')" :active="route().current('scholarships.index')">
+                            Scholarship
                         </ResponsiveNavLink>
 
                     </div>

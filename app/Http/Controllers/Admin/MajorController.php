@@ -3,22 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FieldResource;
-use App\Models\Field;
-use Illuminate\Http\RedirectResponse;
+use App\Http\Resources\MajorResource;
+use App\Models\Major;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class FieldController extends Controller
+class MajorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $fields = FieldResource::collection(Field::all());
-        return Inertia::render('AdminApp/Field/Index', compact('fields'));
+        $majors = MajorResource::collection(Major::all());
+        return Inertia::render('AdminApp/Major/Index', compact('majors'));
     }
 
     /**
@@ -26,7 +25,7 @@ class FieldController extends Controller
      */
     public function create()
     {
-        return Inertia::render('AdminApp/Field/Create');
+        return Inertia::render('AdminApp/Major/Create');
     }
 
     /**
@@ -39,11 +38,11 @@ class FieldController extends Controller
             'description'=>['required', 'min:10'],
         ]);
         if ($request){
-            Field::create([
+            Major::create([
                 'title'=>$request->title,
                 'description'=>$request->description,
             ]);
-            return Redirect::route('fields.index');
+            return Redirect::route('majors.index');
         }
         return Redirect::back();
     }
@@ -75,8 +74,8 @@ class FieldController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Field $field)
+    public function destroy(Major $major)
     {
-        $field->delete();
+        $major->delete();
     }
 }

@@ -3,22 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FieldResource;
-use App\Models\Field;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class FieldController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $fields = FieldResource::collection(Field::all());
-        return Inertia::render('AdminApp/Field/Index', compact('fields'));
+        return Inertia::render('AdminApp/Country/Index');
     }
 
     /**
@@ -26,7 +21,7 @@ class FieldController extends Controller
      */
     public function create()
     {
-        return Inertia::render('AdminApp/Field/Create');
+        //
     }
 
     /**
@@ -34,18 +29,7 @@ class FieldController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'=>['required', 'min:2'],
-            'description'=>['required', 'min:10'],
-        ]);
-        if ($request){
-            Field::create([
-                'title'=>$request->title,
-                'description'=>$request->description,
-            ]);
-            return Redirect::route('fields.index');
-        }
-        return Redirect::back();
+        //
     }
 
     /**
@@ -75,8 +59,8 @@ class FieldController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Field $field)
+    public function destroy(string $id)
     {
-        $field->delete();
+        //
     }
 }
