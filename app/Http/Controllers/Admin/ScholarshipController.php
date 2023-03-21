@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ScholarshipResource;
 use App\Models\Country;
 use App\Models\Field;
 use App\Models\Major;
 use App\Models\Scholarship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ScholarshipController extends Controller
@@ -18,7 +20,8 @@ class ScholarshipController extends Controller
      */
     public function index()
     {
-        return Inertia::render('AdminApp/Scholarship/Index');
+        $scholarships = ScholarshipResource::collection(Scholarship::all());
+        return Inertia::render('AdminApp/Scholarship/Index', compact('scholarships'));
     }
 
     /**
@@ -95,8 +98,10 @@ class ScholarshipController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Scholarship $scholarship)
     {
-        //
+        Storage::delete($scholarship->image);
+        $scholarship->delete();
+        return Redirect::back();
     }
 }
