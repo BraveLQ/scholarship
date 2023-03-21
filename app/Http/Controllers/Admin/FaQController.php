@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FAQResource;
+use App\Models\FAQ;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class FaQController extends Controller
 {
@@ -12,7 +16,8 @@ class FaQController extends Controller
      */
     public function index()
     {
-        //
+        $faqs = FAQResource::collection(FAQ::all());
+        return Inertia::render('AdminApp/FAQ/Index', compact('faqs'));
     }
 
     /**
@@ -20,7 +25,8 @@ class FaQController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('AdminApp/FAQ/Create');
+
     }
 
     /**
@@ -28,7 +34,18 @@ class FaQController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'question'=>['required', 'min:2'],
+            'answer'=>['required', 'min:2'],
+        ]);
+        if ($request){
+            FAQ::create([
+                'question'=>$request->question,
+                'answer'=>$request->answer,
+            ]);
+            return Redirect::route('faqs.index');
+        }
+        return Redirect::back();
     }
 
     /**
@@ -58,8 +75,9 @@ class FaQController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(FAQ $faq)
     {
-        //
+        $faq->delete();
+        return Redirect::back();
     }
 }

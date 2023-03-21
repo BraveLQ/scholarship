@@ -59,9 +59,14 @@ const logout = () => {
                                 </NavLink>
                                 <NavLink :href="route('countries.index')" :active="route().current('countries.index')">
                                     Country
-                                </NavLink><NavLink :href="route('scholarships.index')" :active="route().current('scholarships.index')">
+                                </NavLink>
+                                <NavLink :href="route('scholarships.index')" :active="route().current('scholarships.index')">
                                     Scholarships
                                 </NavLink>
+                                <NavLink :href="route('faqs.index')" :active="route().current('faqs.index')">
+                                    FAQ
+                                </NavLink>
+
                             </div>
                         </div>
 
@@ -216,6 +221,9 @@ const logout = () => {
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('scholarships.index')" :active="route().current('scholarships.index')">
                             Scholarship
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('faqs.index')" :active="route().current('faqs.index')">
+                            FAQ
                         </ResponsiveNavLink>
 
                     </div>
