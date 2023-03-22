@@ -38,4 +38,5 @@ Route::middleware([
     Route::resource('/countries', \App\Http\Controllers\Admin\CountryController::class);
     Route::resource('/scholarships', \App\Http\Controllers\Admin\ScholarshipController::class);
     Route::resource('/faqs', \App\Http\Controllers\Admin\FaQController::class);
+    Route::resource('/success-stories', \App\Http\Controllers\Admin\SuccessStoryController::class);
 });
